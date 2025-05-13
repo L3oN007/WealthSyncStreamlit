@@ -1,6 +1,10 @@
 import pandas as pd
 import os
 from datetime import datetime
+import logging
+from src.utils.logger import setup_logger
+
+logger = setup_logger("data_manager")
 
 class DataManager:
     """Class to combine and store data in CSV files"""
@@ -12,7 +16,7 @@ class DataManager:
         """Ensure the directory for data storage exists"""
         if not os.path.exists(self.base_path):
             os.makedirs(self.base_path)
-            print(f"Created directory: {self.base_path}")
+            logger.info(f"Created directory: {self.base_path}")
             
         # Create subdirectories for different data types
         self.finance_dir = os.path.join(self.base_path, 'finance')
@@ -21,7 +25,7 @@ class DataManager:
         for directory in [self.finance_dir, self.stocks_dir]:
             if not os.path.exists(directory):
                 os.makedirs(directory)
-                print(f"Created directory: {directory}")
+                logger.info(f"Created directory: {directory}")
 
     def _get_timestamp(self):
         """Get current timestamp for file naming"""
@@ -55,12 +59,12 @@ class DataManager:
             latest_file = os.path.join(self.finance_dir, 'finance_data_latest.csv')
             combined_finance.to_csv(latest_file, index=False)
             
-            print(f"Saved {len(combined_finance)} combined finance records to CSV")
-            print(f"Files saved: \n- {finance_file}\n- {latest_file}")
+            logger.info(f"Saved {len(combined_finance)} combined finance records to CSV")
+            logger.info(f"Files saved: \n- {finance_file}\n- {latest_file}")
             
             return combined_finance
         except Exception as e:
-            print(f"Error combining finance data: {e}")
+            logger.error(f"Error combining finance data: {e}")
             return pd.DataFrame()
 
     def save_stock_data(self, stock_data):
@@ -86,12 +90,12 @@ class DataManager:
                     df.to_csv(latest_file)
                     saved_files.append(latest_file)
                     
-                    print(f"Saved {len(df)} records for {ticker}")
+                    logger.info(f"Saved {len(df)} records for {ticker}")
             
-            print(f"Stock data saved to:\n" + "\n".join(f"- {f}" for f in saved_files))
+            logger.info(f"Stock data saved to {len(saved_files)} files")
             
         except Exception as e:
-            print(f"Error saving stock data: {e}")
+            logger.error(f"Error saving stock data: {e}")
 
     def load_stock_data(self, ticker):
         """Load latest stock data for a ticker"""
@@ -104,10 +108,10 @@ class DataManager:
                     df['Date'] = pd.to_datetime(df['Date'])
                 return df
             else:
-                print(f"No data found for ticker {ticker}")
+                logger.warning(f"No data found for ticker {ticker}")
                 return pd.DataFrame()
         except Exception as e:
-            print(f"Error loading stock data for {ticker}: {e}")
+            logger.error(f"Error loading stock data for {ticker}: {e}")
             return pd.DataFrame()
 
     def load_finance_data(self):
@@ -119,10 +123,10 @@ class DataManager:
                 df['Date'] = pd.to_datetime(df['Date'])
                 return df
             else:
-                print("No finance data found")
+                logger.warning("No finance data found")
                 return pd.DataFrame()
         except Exception as e:
-            print(f"Error loading finance data: {e}")
+            logger.error(f"Error loading finance data: {e}")
             return pd.DataFrame()
 
     def get_available_data_files(self):

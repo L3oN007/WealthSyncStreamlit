@@ -2,6 +2,9 @@ import pandas as pd
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from notion_client import Client
+from src.utils.logger import setup_logger
+
+logger = setup_logger("data_providers")
 
 class NotionData:
     """Class to manage data from Notion"""
@@ -22,10 +25,10 @@ class NotionData:
                 amount = page["properties"]["Amount"]["number"] if page["properties"]["Amount"]["number"] else 0
                 data.append([date, category, description, amount])
             self.data = pd.DataFrame(data, columns=["Date", "Category", "Description", "Amount"])
-            print("Successfully fetched data from Notion.")
+            logger.info(f"Successfully fetched {len(data)} records from Notion")
             return self.data
         except Exception as e:
-            print(f"Error fetching data from Notion: {e}")
+            logger.error(f"Error fetching data from Notion: {e}")
             return pd.DataFrame(columns=["Date", "Category", "Description", "Amount"])
 
 class GoogleSheetsData:
@@ -34,37 +37,37 @@ class GoogleSheetsData:
         try:
             self.creds = ServiceAccountCredentials.from_json_keyfile_name(credentials_path, scope)
             self.client = gspread.authorize(self.creds)
-            print("Successfully connected to Google Sheets.")
+            logger.info("Successfully connected to Google Sheets")
         except Exception as e:
-            print(f"Error connecting to Google Sheets: {e}")
+            logger.error(f"Error connecting to Google Sheets: {e}")
             self.client = None
 
     def fetch_stock_list(self, spreadsheet_id):
         """Fetch stock list from Google Sheets"""
         if not self.client:
-            print("Google Sheets client not initialized.")
+            logger.error("Google Sheets client not initialized")
             return []
             
         try:
             sheet = self.client.open_by_key(spreadsheet_id).sheet1
             tickers = sheet.col_values(1)[1:]  # Skip header row
-            print(f"Successfully fetched {len(tickers)} stock tickers.")
+            logger.info(f"Successfully fetched {len(tickers)} stock tickers")
             return tickers
         except Exception as e:
-            print(f"Error fetching stock list: {e}")
+            logger.error(f"Error fetching stock list: {e}")
             return []
 
     def fetch_finance_data(self, spreadsheet_id):
         """Fetch financial data from Google Sheets"""
         if not self.client:
-            print("Google Sheets client not initialized.")
+            logger.error("Google Sheets client not initialized")
             return pd.DataFrame()
             
         try:
             sheet = self.client.open_by_key(spreadsheet_id).sheet1
             data = pd.DataFrame(sheet.get_all_records())
-            print(f"Successfully fetched {len(data)} financial records.")
+            logger.info(f"Successfully fetched {len(data)} financial records")
             return data
         except Exception as e:
-            print(f"Error fetching finance data: {e}")
+            logger.error(f"Error fetching finance data: {e}")
             return pd.DataFrame() 

@@ -10,3 +10,6 @@ data/
 
 # Cache files
 cache/
+
+# Logs
+logs/

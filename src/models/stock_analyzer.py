@@ -4,6 +4,9 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
+from src.utils.logger import setup_logger
+
+logger = setup_logger("stock_analyzer")
 
 class StockData:
     """Class to manage stock data from yfinance"""
@@ -18,11 +21,11 @@ class StockData:
                 history = stock.history(period="1y")
                 if not history.empty:
                     self.stock_data[ticker] = history
-                    print(f"Successfully fetched data for {ticker} ({len(history)} records)")
+                    logger.info(f"Successfully fetched data for {ticker} ({len(history)} records)")
                 else:
-                    print(f"No data available for {ticker}")
+                    logger.warning(f"No data available for {ticker}")
             except Exception as e:
-                print(f"Error fetching data for {ticker}: {e}")
+                logger.error(f"Error fetching data for {ticker}: {e}")
         
         return self.stock_data
 
@@ -35,7 +38,7 @@ class StockPredictor:
     def train_model(self, data, features, target):
         """Train model with data"""
         if data.empty or len(data) < 10:
-            print("Not enough data for training")
+            logger.warning("Not enough data for training")
             return []
             
         try:
@@ -54,11 +57,11 @@ class StockPredictor:
             # Calculate error metrics
             mse = mean_squared_error(y_test, predictions)
             rmse = np.sqrt(mse)
-            print(f"Model performance - MSE: {mse:.4f}, RMSE: {rmse:.4f}")
+            logger.info(f"Model performance - MSE: {mse:.4f}, RMSE: {rmse:.4f}")
             
             return predictions
         except Exception as e:
-            print(f"Error training model: {e}")
+            logger.error(f"Error training model: {e}")
             return []
 
     def predict(self, data, features):
@@ -70,5 +73,5 @@ class StockPredictor:
             X = data[features]
             return self.model.predict(X)
         except Exception as e:
-            print(f"Error making prediction: {e}")
+            logger.error(f"Error making prediction: {e}")
             return [] 
