@@ -63,17 +63,8 @@ def render_dashboard():
     else:
         st.sidebar.write("Stock Data: Never updated")
     
-    # Add quick links to update data
-    st.sidebar.subheader("Quick Actions")
-    if st.sidebar.button("📊 Update Financial Data"):
-        st.sidebar.info("Redirecting to Financial Data page...")
-        st.session_state['redirect_to'] = 'financial_data'
-        st.rerun()
-        
-    if st.sidebar.button("📈 Update Stock Data"):
-        st.sidebar.info("Redirecting to Stock Analysis page...")
-        st.session_state['redirect_to'] = 'stock_analysis'
-        st.rerun()
+
+
     
     col1, col2 = st.columns(2)
     

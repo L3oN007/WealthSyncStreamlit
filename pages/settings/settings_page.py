@@ -31,45 +31,46 @@ def render_settings():
     
     # Tab 1: API Configuration
     with tab1:
-        st.write("Configure your WealthSync application settings here.")
+        st.subheader("API Configuration")
+        st.info("This tab been disabled for deploy to production.")
         
-        # Notion API Settings
-        st.subheader("Notion API")
-        notion_token = st.text_input("Notion API Token", config.notion_token, type="password")
-        notion_database_id = st.text_input("Notion Database ID", config.notion_database_id)
+        # # Notion API Settings
+        # st.subheader("Notion API")
+        # notion_token = st.text_input("Notion API Token", config.notion_token, type="password")
+        # notion_database_id = st.text_input("Notion Database ID", config.notion_database_id)
         
-        # Google Sheets Settings
-        st.subheader("Google Sheets")
-        stock_spreadsheet_id = st.text_input("Stock Spreadsheet ID", config.stock_spreadsheet_id)
-        finance_spreadsheet_id = st.text_input("Finance Spreadsheet ID", config.finance_spreadsheet_id)
+        # # Google Sheets Settings
+        # st.subheader("Google Sheets")
+        # stock_spreadsheet_id = st.text_input("Stock Spreadsheet ID", config.stock_spreadsheet_id)
+        # finance_spreadsheet_id = st.text_input("Finance Spreadsheet ID", config.finance_spreadsheet_id)
         
-        # GitHub Settings
-        st.subheader("GitHub")
-        github_username = st.text_input("GitHub Username", config.github_username)
-        github_email = st.text_input("GitHub Email", config.github_email)
-        github_repo_url = st.text_input("GitHub Repository URL", config.github_repo_url)
-        github_pat = st.text_input("GitHub Personal Access Token", config.github_pat, type="password")
+        # # GitHub Settings
+        # st.subheader("GitHub")
+        # github_username = st.text_input("GitHub Username", config.github_username)
+        # github_email = st.text_input("GitHub Email", config.github_email)
+        # github_repo_url = st.text_input("GitHub Repository URL", config.github_repo_url)
+        # github_pat = st.text_input("GitHub Personal Access Token", config.github_pat, type="password")
         
-        # Save Configuration
-        if st.button("Save Configuration"):
-            # Update configuration with new values
-            config.notion_token = notion_token
-            config.notion_database_id = notion_database_id
-            config.stock_spreadsheet_id = stock_spreadsheet_id
-            config.finance_spreadsheet_id = finance_spreadsheet_id
-            config.github_username = github_username
-            config.github_email = github_email
-            config.github_repo_url = github_repo_url
-            config.github_pat = github_pat
+        # # Save Configuration
+        # if st.button("Save Configuration"):
+        #     # Update configuration with new values
+        #     config.notion_token = notion_token
+        #     config.notion_database_id = notion_database_id
+        #     config.stock_spreadsheet_id = stock_spreadsheet_id
+        #     config.finance_spreadsheet_id = finance_spreadsheet_id
+        #     config.github_username = github_username
+        #     config.github_email = github_email
+        #     config.github_repo_url = github_repo_url
+        #     config.github_pat = github_pat
             
-            # Ensure config directory exists
-            os.makedirs("configs", exist_ok=True)
+        #     # Ensure config directory exists
+        #     os.makedirs("configs", exist_ok=True)
             
-            # Save configuration to file
-            config_path = os.path.join("configs", "config.yaml")
-            config.save_config(config_path)
+        #     # Save configuration to file
+        #     config_path = os.path.join("configs", "config.yaml")
+        #     config.save_config(config_path)
             
-            st.success(f"Configuration saved to {config_path}")
+        #     st.success(f"Configuration saved to {config_path}")
         
         # Environment Variables
         st.subheader("Environment Variables")
@@ -90,58 +91,58 @@ def render_settings():
     # Tab 2: Data Storage Settings
     with tab2:
         st.subheader("Data Storage Settings")
+        st.info("This tab been disabled for deploy to production.")
+        # # Data directories
+        # data_dir = st.text_input("Data Directory", config.data_dir)
+        # raw_data_dir = st.text_input("Raw Data Directory", config.raw_data_dir)
+        # processed_data_dir = st.text_input("Processed Data Directory", config.processed_data_dir)
+        # output_dir = st.text_input("Output Directory", config.output_dir)
+        # logs_dir = st.text_input("Logs Directory", config.logs_dir)
         
-        # Data directories
-        data_dir = st.text_input("Data Directory", config.data_dir)
-        raw_data_dir = st.text_input("Raw Data Directory", config.raw_data_dir)
-        processed_data_dir = st.text_input("Processed Data Directory", config.processed_data_dir)
-        output_dir = st.text_input("Output Directory", config.output_dir)
-        logs_dir = st.text_input("Logs Directory", config.logs_dir)
-        
-        if st.button("Save Storage Settings"):
-            # Update configuration
-            config.data_dir = data_dir
-            config.raw_data_dir = raw_data_dir
-            config.processed_data_dir = processed_data_dir
-            config.output_dir = output_dir
-            config.logs_dir = logs_dir
+        # if st.button("Save Storage Settings"):
+        #     # Update configuration
+        #     config.data_dir = data_dir
+        #     config.raw_data_dir = raw_data_dir
+        #     config.processed_data_dir = processed_data_dir
+        #     config.output_dir = output_dir
+        #     config.logs_dir = logs_dir
             
-            # Save configuration
-            config_path = os.path.join("configs", "config.yaml")
-            config.save_config(config_path)
+        #     # Save configuration
+        #     config_path = os.path.join("configs", "config.yaml")
+        #     config.save_config(config_path)
             
-            # Ensure directories exist
-            config.ensure_data_directory()
+        #     # Ensure directories exist
+        #     config.ensure_data_directory()
             
-            st.success("Storage settings saved and directories created.")
+        #     st.success("Storage settings saved and directories created.")
         
-        # Data Management
-        st.subheader("Data Management")
+        # # Data Management
+        # st.subheader("Data Management")
         
-        # Clear data button
-        if st.button("Clear All Data"):
-            if st.checkbox("I understand this will delete all data files"):
-                # Create confirmation dialog
-                confirmation = st.text_input("Type 'CONFIRM' to proceed with data deletion:")
-                if confirmation == "CONFIRM":
-                    # Logic to delete all data files
-                    st.warning("This feature is not yet implemented")
-                    st.info("You can manually delete files from the data directory")
-                else:
-                    st.warning("Confirmation text doesn't match. Data not deleted.")
+        # # Clear data button
+        # if st.button("Clear All Data"):
+        #     if st.checkbox("I understand this will delete all data files"):
+        #         # Create confirmation dialog
+        #         confirmation = st.text_input("Type 'CONFIRM' to proceed with data deletion:")
+        #         if confirmation == "CONFIRM":
+        #             # Logic to delete all data files
+        #             st.warning("This feature is not yet implemented")
+        #             st.info("You can manually delete files from the data directory")
+        #         else:
+        #             st.warning("Confirmation text doesn't match. Data not deleted.")
         
-        # Display current data storage info
-        st.subheader("Data Storage Information")
+        # # Display current data storage info
+        # st.subheader("Data Storage Information")
         
-        # Ensure directories exist
-        config.ensure_data_directory()
+        # # Ensure directories exist
+        # config.ensure_data_directory()
         
-        # Get directory sizes
-        data_size = sum(os.path.getsize(os.path.join(config.data_dir, f)) for f in os.listdir(config.data_dir) if os.path.isfile(os.path.join(config.data_dir, f)))
+        # # Get directory sizes
+        # data_size = sum(os.path.getsize(os.path.join(config.data_dir, f)) for f in os.listdir(config.data_dir) if os.path.isfile(os.path.join(config.data_dir, f)))
         
-        # Display info
-        st.write(f"Data directory: {os.path.abspath(config.data_dir)}")
-        st.write(f"Total data size: {data_size / 1024:.2f} KB")
+        # # Display info
+        # st.write(f"Data directory: {os.path.abspath(config.data_dir)}")
+        # st.write(f"Total data size: {data_size / 1024:.2f} KB")
     
     # Tab 3: Logs Viewer
     with tab3:
