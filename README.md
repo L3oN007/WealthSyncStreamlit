@@ -23,7 +23,7 @@ WealthSyncStreamlit/
 │   ├── services/       # Data services and providers
 │   └── utils/          # Utility functions
 ├── main.py             # Application entry point
-├── streamlit_app.py    # Streamlit application
+├── wealth_sync_app.py    # Streamlit application
 ├── streamlit_run.sh    # Shell script to run the application
 ├── requirements.txt    # Python dependencies
 └── README.md           # Project documentation
@@ -56,7 +56,7 @@ WealthSyncStreamlit/
    pip install -r requirements.txt
    ```
 
-4. Set up your environment variables:
+4. Set up your environment variables in file `.env`:
    - `NOTION_TOKEN`
    - `NOTION_DATABASE_ID`
    - `STOCK_SPREADSHEET_ID`
@@ -87,7 +87,6 @@ WealthSyncStreamlit/
 
 - **Notion** - For tracking expenses and financial transactions
 - **Google Sheets** - For tracking stocks and investments
-- **Yahoo Finance** - For fetching stock market data
 
 ## Contributing
 
