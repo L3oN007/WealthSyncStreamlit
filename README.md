@@ -76,8 +76,7 @@ WealthSyncStreamlit/
    streamlit run streamlit_app.py
    
    # OR using the provided script
-   chmod +x streamlit_run.sh
-   ./streamlit_run.sh
+   chmod +x streamlit_run.sh && ./streamlit_run.sh
    ```
 
 ## Usage
