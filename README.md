@@ -34,21 +34,28 @@ WealthSyncStreamlit/
 - Financial data visualization and analysis
 - Stock market data analysis with price predictions
 - Integration with Notion and Google Sheets
-- GitHub data synchronization
+
 - Customizable dashboard with multiple views
 
 ## Setup and Installation
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/WealthSyncStreamlit.git
+   git clone https://github.com/L3oN007/WealthSyncStreamlit.git
    cd WealthSyncStreamlit
    ```
 
 2. Create and activate a virtual environment:
    ```
+   Step 1: Create a virtual environment
    python -m venv .venv
-   source .venv/bin/activate  # On Windows, use: .venv\Scripts\activate
+
+   Step 2: Activate the virtual environment
+   # macOS and Linux
+   source .venv/bin/activate
+
+   # Windows PowerShell
+   .venv\Scripts\Activate.ps1
    ```
 
 3. Install the required packages:
@@ -61,10 +68,7 @@ WealthSyncStreamlit/
    - `NOTION_DATABASE_ID`
    - `STOCK_SPREADSHEET_ID`
    - `FINANCE_SPREADSHEET_ID`
-   - `GITHUB_USERNAME`
-   - `GITHUB_EMAIL`
-   - `GITHUB_REPO_URL`
-   - `GITHUB_PAT`
+
 
 5. Run the Streamlit app:
    ```

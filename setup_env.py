@@ -29,12 +29,6 @@ NOTION_DATABASE_ID=
 GOOGLE_CREDENTIALS=credentials.json
 STOCK_SPREADSHEET_ID=
 FINANCE_SPREADSHEET_ID=
-
-# GitHub Configuration
-GITHUB_USERNAME=
-GITHUB_EMAIL=
-GITHUB_REPO_URL=https://github.com/yourusername/your-repo
-GITHUB_PAT=
 """
     
     try:

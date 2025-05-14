@@ -22,11 +22,9 @@ def render_sidebar():
     st.sidebar.subheader("Data Sources")
     notion_connected = bool(config.notion_token and config.notion_database_id)
     sheets_connected = bool(config.stock_spreadsheet_id and config.finance_spreadsheet_id)
-    github_connected = bool(config.github_username and config.github_pat)
     
     st.sidebar.write(f"Notion API: {'✅ Connected' if notion_connected else '❌ Not configured'}")
     st.sidebar.write(f"Google Sheets: {'✅ Connected' if sheets_connected else '❌ Not configured'}")
-    st.sidebar.write(f"GitHub: {'✅ Connected' if github_connected else '❌ Not configured'}")
     
     # Navigation
     st.sidebar.header("Navigation")

@@ -29,11 +29,7 @@ class Config:
         self.stock_spreadsheet_id = os.environ.get("STOCK_SPREADSHEET_ID", "")
         self.finance_spreadsheet_id = os.environ.get("FINANCE_SPREADSHEET_ID", "")
         
-        # GitHub configuration
-        self.github_username = os.environ.get("GITHUB_USERNAME", "")
-        self.github_email = os.environ.get("GITHUB_EMAIL", "")
-        self.github_repo_url = os.environ.get("GITHUB_REPO_URL", "")
-        self.github_pat = os.environ.get("GITHUB_PAT", "")
+
         
         # Data storage folders
         self.folder_path = self.raw_data_dir
@@ -69,10 +65,7 @@ class Config:
                 'credentials_file': self.credentials_file,
                 'scope': self.scope,
                 'stock_spreadsheet_id': self.stock_spreadsheet_id,
-                'finance_spreadsheet_id': self.finance_spreadsheet_id,
-                'github_username': self.github_username,
-                'github_email': self.github_email,
-                'github_repo_url': self.github_repo_url
+                'finance_spreadsheet_id': self.finance_spreadsheet_id
             }
             
             with open(config_path, 'w') as file:

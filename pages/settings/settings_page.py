@@ -44,12 +44,7 @@ def render_settings():
         # stock_spreadsheet_id = st.text_input("Stock Spreadsheet ID", config.stock_spreadsheet_id)
         # finance_spreadsheet_id = st.text_input("Finance Spreadsheet ID", config.finance_spreadsheet_id)
         
-        # # GitHub Settings
-        # st.subheader("GitHub")
-        # github_username = st.text_input("GitHub Username", config.github_username)
-        # github_email = st.text_input("GitHub Email", config.github_email)
-        # github_repo_url = st.text_input("GitHub Repository URL", config.github_repo_url)
-        # github_pat = st.text_input("GitHub Personal Access Token", config.github_pat, type="password")
+        
         
         # # Save Configuration
         # if st.button("Save Configuration"):
@@ -58,10 +53,7 @@ def render_settings():
         #     config.notion_database_id = notion_database_id
         #     config.stock_spreadsheet_id = stock_spreadsheet_id
         #     config.finance_spreadsheet_id = finance_spreadsheet_id
-        #     config.github_username = github_username
-        #     config.github_email = github_email
-        #     config.github_repo_url = github_repo_url
-        #     config.github_pat = github_pat
+        
             
         #     # Ensure config directory exists
         #     os.makedirs("configs", exist_ok=True)
@@ -81,10 +73,7 @@ def render_settings():
         - `NOTION_DATABASE_ID`
         - `STOCK_SPREADSHEET_ID`
         - `FINANCE_SPREADSHEET_ID`
-        - `GITHUB_USERNAME`
-        - `GITHUB_EMAIL`
-        - `GITHUB_REPO_URL`
-        - `GITHUB_PAT`
+
         - `GOOGLE_CREDENTIALS` (path to credentials.json file)
         """)
     
